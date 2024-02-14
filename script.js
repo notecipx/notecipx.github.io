@@ -1,69 +1,43 @@
-const textarea = $('.term');
-const startButton = $('.start-button');
+const textArray = [
+    "too many fans",
+    "hellhound.sh owns u",
+    "#1 troll"
+];
+let textIndex = 0;
+let charIndex = 0;
+const typedTextElement = document.getElementById("typedText");
 
-function displayText(text, color = "#ffffff", fontSize = "20px", newLine = true) {
-    const span = $("<span>").css({
-        "color": color,
-        "font-size": fontSize
-    });
-    if (newLine) {
-        span.append("<br>");
+function type() {
+    const currentText = textArray[textIndex];
+    if (charIndex < currentText.length) {
+        typedTextElement.textContent += currentText.charAt(charIndex);
+        charIndex++;
+        setTimeout(type, 50); 
+    } else {
+        setTimeout(erase, 1000); 
     }
-    textarea.append(span);
-    return typeText(span, text);
 }
 
-function typeText(element, text) {
-    return new Promise(resolve => {
-        let index = 0;
-        const typingInterval = setInterval(() => {
-            if (index < text.length) {
-                element.append(text[index]);
-                index++;
-            } else {
-                clearInterval(typingInterval);
-                resolve();
-            }
-        }, 20);
-    });
+function erase() {
+    if (charIndex > 0) {
+        typedTextElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, 50); 
+    } else {
+        textIndex = (textIndex + 1) % textArray.length; 
+        setTimeout(type, 1000);
+    }
 }
 
-async function backspaceText(currentText, targetText) {
-    const rootPrompt = "root@kali: ";
-    const initialText = rootPrompt + currentText;
-    const targetLength = targetText.length + rootPrompt.length;
 
-    return new Promise(resolve => {
-        const backspaceInterval = setInterval(() => {
-            if (initialText.length > targetLength) {
-                currentText = currentText.slice(0, -1);
-                textarea.html("<span style='color: #ff0000; font-size: 20px;'>" + rootPrompt + "</span><span style='color: #ffffff; font-size: 20px;'>" + currentText + "</span>");
-            } else {
-                clearInterval(backspaceInterval);
-                resolve();
-            }
-        }, 20);
-    });
-}
+type();
 
-async function runKaliSequence() {
-    await displayText("root@kali: ", "#ff0000", "20px");
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    const commandOutput = "The Last Dance is dogshit";
-    await displayText(commandOutput, "#ffffff", "20px", false);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    await backspaceText(commandOutput, "root@kali: ");
-    playAudio('audio.mp3');
-}
+const overlay = document.getElementById("overlay");
+const backgroundVideo = document.getElementById("background-video");
 
-function playAudio(audioFile) {
-    var audio = new Audio(audioFile);
-    audio.play();
-}
-
-startButton.on('click', function () {
-    startButton.hide();
-    playAudio('audio.mp3');
-    runKaliSequence();
-    startButton.prop('disabled', true);
+overlay.addEventListener("click", () => {
+    overlay.style.display = "none"; 
+    backgroundVideo.play(); 
 });
+
+
