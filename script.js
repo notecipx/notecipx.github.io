@@ -1,7 +1,7 @@
 const textArray = [
-    "too many fans",
-    "hellhound.sh owns u",
-    "#1 troll"
+    "#1 PC Checker",
+    "hellhound.sh on top",
+    "arch linux user"
 ];
 let textIndex = 0;
 let charIndex = 0;
