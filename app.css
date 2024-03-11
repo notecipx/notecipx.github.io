@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap');
 
 :root {
-    --bgColor:#0e0e0f;
+    --bgColor: #0e0e0f;
     --accentColor: #98239a;
-    --bold-h1:900;
-    --bold-p:200;
+    --bold-h1: 900;
+    --bold-p: 200;
     --font-poppins: 'Poppins', sans-serif;
     --font-inter: 'Inter', sans-serif;
     --font-josefin: 'Josefin Sans', sans-serif;
@@ -36,15 +36,13 @@ html {
 }
 
 h1 {
-    color: white; 
+    color: white;
     font-family: var(--font-inter);
     font-weight: var(--bold-h1) !important;
     text-align: center;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    font-size: 36px; 
+    font-size: 36px;
 }
-
-
 
 body {
     font-weight: var(--bold-p);
@@ -84,7 +82,7 @@ body {
     text-align: center;
 }
 
-.box p{
+.box p {
     text-align: center;
 }
 
@@ -167,7 +165,6 @@ body {
     text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
 }
 
-
 body, html {
     margin: 0;
     padding: 0;
@@ -217,7 +214,7 @@ body {
     gap: 16px;
 }
 
-@media (max-aspect-ratio: 16/9){
+@media (max-aspect-ratio: 16/9) {
     .grid {
         grid-template-columns: repeat(3, 1fr);
     }
